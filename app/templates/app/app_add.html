@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+
+{% block title %}新增应用{% endblock %}
+
+{% block content %}
+    <div>
+        <form action="/app/add/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="file" name="file"> <br />
+            <input type="text" id="appName" name="appName" placeholder="应用名称"> <br>
+            <input type="text" id="buildName" name="buildName" placeholder="构建名称"> <br>
+            <input type="text" id="version" name="version" placeholder="当前版本"> <br>
+            <input type="text" id="releaseNote" name="releaseNote" placeholder="发布内容"> <br>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+{% endblock %}

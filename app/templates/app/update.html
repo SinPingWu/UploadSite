@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>APP更新</title>
+    <style type="text/css">
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link href="{% static 'app/css/home.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <div style="margin: 0 auto; width: 400px; height: 200px; background: whitesmoke;
+     border: 1px solid white;display: inline-block; ">
+        <form action="/app/update/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label style="font-size: 14px; font-style: inherit">文件名：</label>
+                <input type="file" id="file" name="file"><br />
+            </div>
+            <div>
+                <label style="font-size: 14px; font-style: inherit">应用名称：</label>
+                <input class="my_input" style="font-size: 14px" id="appName" name="appName" readonly="" value="{{ app.app_name }}"><br/>
+            </div>
+            <div>
+                <label style="font-size: 14px; font-style: inherit">构建名：</label>
+                <input class="my_input" id="buildName" name="buildName" readonly="" value="{{ app.build_name }}"><br />
+            </div>
+            <div>
+                <label style="font-size: 14px; font-style: inherit" >版本号：</label>
+                <input id="version" name="version"><br />
+            </div>
+            <div>
+                <label style="font-size: 14px; font-style: inherit" >更新内容：</label><br />
+                <input id="releaseNote" name="releaseNote"><br />
+            </div>
+            <input type="submit" value="submit" style="font-size: 16px;">
+        </form>
+    </div>
+</body>
+</html>

@@ -19,7 +19,27 @@ class App(models.Model):
     version = models.IntegerField()
     size = models.BigIntegerField()
     release_time = models.DateTimeField(auto_now_add=True)
+    storage_name = models.CharField(max_length=100, default="")
 
     def __str__(self):
         return self.app_name
+
+
+class Update(models.Model):
+    app_name = models.CharField(max_length=20)
+    build_name = models.CharField(max_length=20, unique=True)
+    version = models.IntegerField()
+    size = models.BigIntegerField()
+    release_note = models.TextField(max_length=200)
+    release_time = models.DateTimeField(auto_now_add=True)
+    storage_name = models.CharField(max_length=100, default="")
+
+    def __str__(self):
+        return self.app_name
+
+    def toJson(self):
+        import json
+        return json.dump(dict([(attr, getattr(self, attr)) for attr
+                               in [f.name for f in self._meta.fields]]))
+
 # Create your models here.

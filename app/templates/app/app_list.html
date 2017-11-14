@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block title %}{{ buildName }}{% endblock %}
+
+{% block content %}
+    <div style="width: 50%; background-color: #b9f1ff;">
+        <button name="update" type="button" value="update" style="width: auto; padding: 5px 10px; background-color: #dcff7f">
+            <a href="/app/update/page/?buildName={{ buildName }}">Update</a>
+        </button>
+        <table class="table table-hover">
+            <thead>
+                <th>版本</th>
+                <th>文件大小</th>
+                <th>发布时间</th>
+            </thead>
+            {% if appList %}
+                {% for app in appList %}
+                    <tbody>
+                        <td>{{ app.version }}</td>
+                        <td>{{ app.size }}</td>
+                        <td>{{ app.release_time }}</td>
+                    </tbody>
+                {% endfor %}
+
+            {% endif %}
+        </table>
+    </div>
+
+{% endblock %}

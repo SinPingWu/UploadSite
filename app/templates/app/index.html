@@ -1,0 +1,94 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>普适软件升级系统</title>
+    <!-- Bootstrap Core CSS-->
+    <link href="{% static 'app/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'app/css/blog-home.css' %}" rel="stylesheet">
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #middle {
+            display: block;
+            margin-top: 18px;
+        }
+
+        .nav-items{
+            border: 1px solid #b4b4b4;
+            border-radius: 8px;
+        }
+
+        .nav-item{
+            position: relative;
+            background-color: #eaeaea;
+            border-top: 1px solid #fff;
+        }
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="page-container" id="nav" style="background-color: #fff !important;">
+        <div id="logo">
+            {% load static from staticfiles %}
+            <img class="logo" src="{% static "app/images/logo.jpg" %}" title="Ubinavi"
+                 style="width: auto; height: auto;">
+        </div>
+    </div>
+</div>
+<div id="middle">
+    <div style="width: 8%; height: 100%; float: left;">
+        <ul class="nav-items">
+            <li class="nav-item" style="color: #1b6d85; font-size: 18px; padding: 0px 10px 0px 10px;">
+                <span>应用列表</span>
+            </li>
+
+            <li class="nav-item" style="color: #1b6d85; font-size: 18px; padding: 0px 10px 0px 10px; border: 1px">
+                <span><a href="/app/add/page/" style="color: #1b6d85">新增应用</a></span>
+            </li>
+        </ul>
+    </div>
+    <div style="width: 90%; height: 100%; float: right;">
+        <table class="table table-hover">
+            <thead>
+            <th>应用名称</th>
+            <th>发布名称</th>
+            <th>当前版本</th>
+            <th>大小</th>
+            <th>发布日期</th>
+            </thead>
+            {% if apps %}
+                {% for app in apps %}
+                    <tbody>
+                        <td><a href="/app/list/?buildName={{ app.build_name }}">{{ app.app_name }}</a></td>
+                        <td>{{ app.build_name }}</td>
+                        <td>{{ app.version }}</td>
+                        <td>{{ app.size }}</td>
+                        <td>{{ app.release_time }}</td>
+                    </tbody>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="{% static 'app/js/jquery.js' %}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
